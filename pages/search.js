@@ -7,7 +7,7 @@ import SearchContentItems from "../components/search/SearchContentItems";
 import SearchImageItems from "../components/search/SearchImageItems";
 import SearchResults from "../components/search/SearchResults";
 import SearchPagination from "../components/search/SearchPagination";
-import Response from "../../mock";
+import Response from "../mock";
 
 // API_KEY, CX(search engine ID) : https://developers.google.com/custom-search/v1/using_rest
 
@@ -47,18 +47,15 @@ function Search({ data }) {
 
 export async function getServerSideProps(context) {
   let { searchType, term, start } = context.query;
-  let mockData = false;
 
   // gg gioi han so lan request 1 ngay
-  const data = mockData
-    ? Response
-    : await fetch(
-        `https://www.googleapis.com/customsearch/v1?key=${
-          process.env.API_KEY
-        }&cx=${process.env.CX}&q=${term}${
-          searchType === "Images" ? "&searchType=image" : ""
-        }&start=${start}`
-      ).then((res) => res.json());
+  const data = await fetch(
+    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${
+      process.env.CX
+    }&q=${term}${
+      searchType === "Images" ? "&searchType=image" : ""
+    }&start=${start}`
+  ).then((res) => res.json());
 
   return {
     props: {
