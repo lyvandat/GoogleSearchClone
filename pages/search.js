@@ -7,7 +7,6 @@ import SearchContentItems from "../components/search/SearchContentItems";
 import SearchImageItems from "../components/search/SearchImageItems";
 import SearchResults from "../components/search/SearchResults";
 import SearchPagination from "../components/search/SearchPagination";
-import Response from "../mock";
 
 // API_KEY, CX(search engine ID) : https://developers.google.com/custom-search/v1/using_rest
 
